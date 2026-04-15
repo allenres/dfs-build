@@ -14,6 +14,18 @@ public class Build {
    * @param k the maximum word length (exclusive)
    */
   public static void printShortWords(Vertex<String> vertex, int k) {
+    printShortWords(vertex, k, new HashSet<>()); 
+  }
+  private static void printShortWords(Vertex<String> vertex, int k, Set<Vertex<String>> visited) {
+    if(vertex == null || visited.contains(vertex)) return;
+
+    visited.add(vertex);
+
+    if(vertex.data.length() < k) System.out.println(vertex.data);
+
+    for(Vertex<String> str : vertex.neighbors) {
+      printShortWords(str, k, visited);
+    }
   }
 
   /**
@@ -23,7 +35,24 @@ public class Build {
    * @return the longest reachable word, or an empty string if the vertex is null
    */
   public static String longestWord(Vertex<String> vertex) {
-    return "";
+    String longest = vertex.data;
+    return longestWord(vertex, longest, new HashSet<>());
+  }
+
+  private static String longestWord(Vertex<String> vertex, String longest, Set<Vertex<String>> visited) {
+    // if(vertex == null || visited.contains(vertex)) return "";
+
+    // visited.add(vertex);
+
+    // if(vertex.data.length() > longest.length()) {
+    //   longest = vertex.data;
+    // }
+
+    // for(Vertex<String> str : vertex.neighbors) {
+    //   longestWord(str, longest, visited);
+    // }
+
+    return longest;
   }
 
   /**
@@ -45,6 +74,7 @@ public class Build {
    * @return true if the destination is reachable from the start, false otherwise
    */
   public static boolean canReach(Airport start, Airport destination) {
+    
     return false;
   }
 
